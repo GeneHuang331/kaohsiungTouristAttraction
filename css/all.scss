@@ -184,6 +184,9 @@ h1 {
         padding: 15px;
         outline: none !important;
     }
+    @media (max-width: 767px) {
+        width: calc(100% - 30px);
+    }
 }
 
 #hotDistrict {
@@ -212,6 +215,11 @@ h1 {
             margin: 0 12px;
             outline: none;
             cursor: pointer;
+            @media (max-width: 767px) {
+                padding: 5px 10px;
+                margin: 0 8px;
+                font-size: 16px;
+            }
             &.btnPurple {
                 background: #8a82cc;
             }
@@ -228,6 +236,12 @@ h1 {
                 background: #8a82cc;
             }
         }
+    }
+    @media (max-width: 991px) {
+        width: 450px;
+    }
+    @media (max-width: 767px) {
+        width: calc(100% - 30px);
     }
 }
 
@@ -247,6 +261,10 @@ h1 {
     flex: 0 0 50%;
     max-width: 50%;
     padding: 0 15px;
+    @media (max-width: 767px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 .divide {
     border-bottom: 1px dashed #559ac8;
