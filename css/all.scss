@@ -1,0 +1,281 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol,
+ul {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+* {
+    box-sizing: border-box;
+}
+///
+body {
+    margin: 0;
+    font-family: // Safari for OS X and iOS (San Francisco)
+        -apple-system,
+        // Chrome < 56 for OS X (San Francisco)
+        BlinkMacSystemFont,
+        // Windows
+        "Segoe UI",
+        // Android
+        "Roboto",
+        // Basic web fallback
+        "Helvetica Neue",
+        Arial, sans-serif,
+        // Emoji fonts
+        "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "微軟正黑體";
+}
+#banner {
+    height: 380px;
+    background: url(../img/Hero.png) center center no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    color: #fff;
+    margin-top: 0;
+    text-align: center;
+    font-size: 40px;
+    color: #ffffff;
+    letter-spacing: 3.89px;
+    font-weight: normal;
+    padding-top: 89px;
+    margin-bottom: 96px;
+    line-height: 1;
+}
+
+.selectWrap {
+    display: block;
+    margin: 0 auto;
+    width: 452px;
+    max-width: 100%;
+    // background-color: rgba($color: #fff, $alpha: 0.7);
+    border: 2px solid #fff;
+    background: rgba($color: #fff, $alpha: 0.7) url(../img/icons_down.png) no-repeat top 50% right 15px;
+    select {
+        appearance: none;
+        width: 100%;
+        display: block;
+        background: transparent;
+        border: 0;
+        padding: 15px;
+        outline: none !important;
+    }
+}
+
+#hotDistrict {
+    width: 800px;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 15px 20px;
+    h2 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 14px;
+    }
+    .hotDistrictList {
+        display: flex;
+        list-style: none;
+        button {
+            border-radius: 5px;
+            color: #fff;
+            border: 0;
+            font-size: 20px;
+            padding: 8px 30px;
+            margin: 0 12px;
+            outline: none;
+            cursor: pointer;
+            &.btnPurple {
+                background: #8a82cc;
+            }
+            &.btnOrange {
+                background: #ffa782;
+            }
+            &.btnYellow {
+                background: #f5d105;
+            }
+            &.btnPurple {
+                background: #559ac8;
+            }
+            &.btnBlue {
+                background: #8a82cc;
+            }
+        }
+    }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 15px;
+}
+.divide {
+    border-bottom: 1px dashed #559ac8;
+    margin-bottom: 65px;
+}
+.itemBanner {
+    background-size: cover;
+    padding: 15px 20px;
+    height: 130px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    color: #fff;
+    h4 {
+        font-size: 20px;
+    }
+}
+.itemInfo {
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    > div:not(:last-child) {
+        margin-bottom: 10px;
+    }
+    img {
+        display: inline-block;
+        margin-right: 8px;
+    }
+}
+.districtItem {
+    margin-bottom: 30px;
+}
