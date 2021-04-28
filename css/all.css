@@ -308,3 +308,62 @@ h1 {
 .districtItem {
   margin-bottom: 30px;
 }
+
+h3 {
+  text-align: center;
+  font-size: 36px;
+  color: #8a82cc;
+  margin-bottom: 30px;
+}
+
+#paginationWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+#pagination {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  overflow-x: auto;
+}
+#pagination a {
+  display: inline-block;
+  padding: 8px;
+  margin: 0 4px;
+  color: #4a4a4a;
+  text-decoration: none;
+}
+#pagination a.active {
+  color: #559ac8;
+}
+
+#prev,
+#next {
+  display: block;
+  white-space: nowrap;
+  margin: 0 5px;
+  color: #4a4a4a;
+  text-decoration: none;
+}
+#prev.disabled,
+#next.disabled {
+  color: rgba(73, 73, 73, 0.5);
+}
+
+footer {
+  background: #559ac8;
+  padding: 30px;
+  text-align: center;
+}
+footer h6 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+footer .dataSource,
+footer .dataSource a {
+  color: #ffd366;
+  text-decoration: none;
+}

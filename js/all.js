@@ -1,6 +1,32 @@
+//variable
 let data = []; //ajax 資料
 let districtList = []; //高雄地區物件陣列
 let sortedData = [] //篩選過的 ajax 資料
+let pagNowAt = 1; //目前所在頁數
+
+//dom
+let hotBtn = document.querySelectorAll('.hotDistrictList button');//熱門地區
+
+//listener
+document.querySelectorAll('.selectWrap select')[0].addEventListener('change', updateDistrictList, false);
+for (let i = 0; i < hotBtn.length; i++) {
+    hotBtn[i].addEventListener('click', updateDistrictListByHot, false);
+}
+document.getElementById('prev').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (pagNowAt > 1) {
+        updatePagination(--pagNowAt);
+    }
+}, false);
+document.getElementById('next').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (pagNowAt < Math.ceil(sortedData.length / 10)) {
+        updatePagination(++pagNowAt);
+    }
+}, false);
+
+
+//AJAX
 let xhr = new XMLHttpRequest();
 xhr.open('get', 'https://api.kcg.gov.tw/api/service/get/9c8e1450-e833-499c-8320-29b36b7ace5c', true);
 //true 是非同步
@@ -24,7 +50,9 @@ function getData() {
 function init() {
     getDistrictList();
     renderDistrictSelect();
-    renderDistrictList(data);
+    sortedData = data;
+    renderDistrictList(sortedData, pagNowAt);
+    renderPagination(sortedData);
 }
 function renderDistrictSelect() {
     let str = '';
@@ -35,9 +63,18 @@ function renderDistrictSelect() {
     }
     document.querySelectorAll('.selectWrap select')[0].innerHTML += str;
 }
-function renderDistrictList(sortedData) {
+function renderDistrictList(sortedData, pagNum) {
+
+    let length = pagNum * 10;
+    let start = length - 10;
+    if (pagNum == Math.ceil(sortedData.length / 10) && sortedData.length % 10 <= 10) {
+        length = sortedData.length;
+    }
+
+    // console.log(length);
     let str = ``;
-    for (let i = 0; i < sortedData.length; i++) {
+    // console.log(sortedData, start, length);
+    for (let i = start; i < length; i++) {
         let placeName = sortedData[i].Name; //地名
         let districtName = getName(sortedData[i].Zipcode); //區
         let openTime = sortedData[i].Opentime; //營業時間
@@ -73,6 +110,7 @@ function renderDistrictList(sortedData) {
     }
     document.querySelector('.districtList').innerHTML = str;
 }
+
 function getDistrictList() {
     for (let i = 0; i < data.length; i++) {
         let zipcode = data[i].Zipcode;
@@ -218,13 +256,80 @@ function getName(zipcode) {
     return name;
 }
 
-document.querySelectorAll('.selectWrap select')[0].addEventListener('change', updateDistrictList, false);
-
 //更新列表
 function updateDistrictList() {
     let code = this.value;
     sortedData = data.filter((item) => {
         return item.Zipcode == code;
     });
-    renderDistrictList(sortedData);
+    pagNowAt = 1; //更新回第一頁
+    renderDistrictList(sortedData, pagNowAt);
+    document.querySelector('h3').textContent = getName(sortedData[0].Zipcode);
+    renderPagination(sortedData);
+}
+
+
+
+//透過熱門商品更新列表
+function updateDistrictListByHot() {
+    let code = this.getAttribute('data-code');
+    // console.log(code);
+    sortedData = data.filter((item) => {
+        return item.Zipcode == code;
+    });
+    pagNowAt = 1;  //更新回第一頁
+    renderDistrictList(sortedData, pagNowAt);
+    document.querySelector('h3').textContent = getName(sortedData[0].Zipcode);
+    renderPagination(sortedData);
+}
+
+//分頁
+function renderPagination(data) {
+    let dataLen = data.length;
+    let pagNum = Math.ceil(dataLen / 10);
+    let str = '';
+    for (let i = 0; i < pagNum; i++) {
+        str += `
+        <li>
+        <a href="#" data-page="${i + 1}">${i + 1}</a>
+        </li>
+        `
+    }
+    document.getElementById('pagination').innerHTML = str;
+    let pagLink = document.querySelectorAll('#pagination a'); //分頁連結
+    for (let i = 0; i < pagLink.length; i++) {
+        pagLink[i].addEventListener('click', function (e) {
+            let pagNum = this.getAttribute('data-page');
+            // console.log(pagNum);
+            e.preventDefault();
+            updatePagination(pagNum);
+        }, false);
+    }
+    document.querySelector('a[data-page="1"]').classList.add('active');
+    document.getElementById('prev').classList.add('disabled');
+}
+
+function updatePagination(pagNum) {
+    pagNowAt = pagNum;
+    // console.log(sortedData);
+    renderDistrictList(sortedData, pagNowAt);
+    let allPagA = document.querySelectorAll('#pagination a');
+    for (let i = 0; i < allPagA.length; i++) {
+        allPagA[i].classList.remove('active');
+    }
+    document.querySelector(`a[data-page="${pagNum}"]`).classList.add('active');
+    pagArrowToggleDisabled(pagNum);
+}
+
+function pagArrowToggleDisabled(pagNum) {
+    if (pagNum == 1) {
+        document.getElementById('next').classList.remove('disabled');
+        document.getElementById('prev').classList.add('disabled');
+    } else if (pagNum == Math.ceil(sortedData.length / 10)) {
+        document.getElementById('next').classList.add('disabled');
+        document.getElementById('prev').classList.remove('disabled');
+    } else {
+        document.getElementById('next').classList.remove('disabled');
+        document.getElementById('prev').classList.remove('disabled');
+    }
 }

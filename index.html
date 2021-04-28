@@ -22,17 +22,33 @@
     <section id="hotDistrict">
         <h2>熱門行政區</h2>
         <ul class="hotDistrictList">
-            <li><button class="btnPurple">苓雅區</button></li>
-            <li><button class="btnOrange">三民區</button></li>
-            <li><button class="btnYellow">新興區</button></li>
-            <li><button class="btnBlue">鹽埕區</button></li>
+            <li><button class="btnPurple" data-code='802'>苓雅區</button></li>
+            <li><button class="btnOrange" data-code='807'>三民區</button></li>
+            <li><button class="btnYellow" data-code='800'>新興區</button></li>
+            <li><button class="btnBlue" data-code='803'>鹽埕區</button></li>
         </ul>
     </section>
     <div class="container">
         <div class="divide"></div>
+        <h3>所有地區</h3>
         <ul class="row districtList">
         </ul>
+        <div id="paginationWrap">
+            <a href="#" id="prev">← prev</a>
+            <ul id="pagination">
+            </ul>
+            <a href="#" id="next"> next →</a>
+        </div>
     </div>
+    <footer>
+        <h6>高雄旅遊網</h6>
+        <div class="dataSource">
+            資料來源：
+            <a href="https://www.kcg.gov.tw/Default.aspx" target="_blank">高雄市政府</a>
+        </div>
+    </footer>
+
+
 
     <script src="js/all.js"></script>
 </body>
